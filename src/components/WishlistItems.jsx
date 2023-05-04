@@ -19,6 +19,7 @@ function WishlistItems(props) {
   const handleRemoveItemFromWish = () => {
     dispatch(removeFromWishlist(props.data));
   };
+
   return (
     <>
       {/* <div className="col-sm-9 card"> */}
@@ -29,7 +30,7 @@ function WishlistItems(props) {
         <div className="contentDiv">
           <div>
             <h6>
-              {category}
+              {category.toUpperCase()}
               <p style={{ color: "grey" }}>{title}</p>
             </h6>
           </div>

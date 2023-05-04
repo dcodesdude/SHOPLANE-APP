@@ -19,7 +19,7 @@ function Cart() {
     <>
       {cart.length ? (
         <div className="mainCartDiv">
-          <div className="row cartProductDiv">
+          <div className=" card row cartProductDiv">
             <Scrollbars style={{ height: "28rem", width: "100%" }}>
               {cart.map((product) => (
                 <CartItems key={product.id} data={product} />
@@ -50,18 +50,20 @@ function Cart() {
           </div>
         </div>
       ) : (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "50px",
-          }}
-        >
-          <div className="card text-center" style={{ padding: "2rem" }}>
-            <p>Your Cart is Empty!</p>
-            <Link to={"/"}>
-              <button className="btn btn-primary">Continue Shopping</button>
-            </Link>
+        <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "5rem 0rem 5rem",
+            }}
+          >
+            <div className="card text-center" style={{ padding: "2rem" }}>
+              <p>Your Cart is Empty!</p>
+              <Link to={"/"}>
+                <button className="btn btn-primary">Continue Shopping</button>
+              </Link>
+            </div>
           </div>
         </div>
       )}

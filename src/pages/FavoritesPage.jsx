@@ -1,16 +1,15 @@
-import { useState } from "react";
 import CategoryNames from "../components/CategoryNames";
 import Navbar from "../components/Navbar";
 import Wishlist from "../components/Wishlist";
+import Footer from "../components/Footer";
 
 function FavoritesPage() {
-  // const [data, setData] = useState(["hi"]);
-
   return (
     <>
       <Navbar />
       <CategoryNames />
       <Wishlist />
+      <Footer />
     </>
   );
 }
