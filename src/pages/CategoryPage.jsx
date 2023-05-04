@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import CategoryNames from "../components/CategoryNames";
 import EachCategory from "../components/EachCategory";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function CategoryPage() {
   const catName = useParams();
@@ -13,6 +14,7 @@ function CategoryPage() {
         <CategoryNames />
       </div>
       <EachCategory data={catName} />
+      {/* <Footer /> */}
     </>
   );
 }

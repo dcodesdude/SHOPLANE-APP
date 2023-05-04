@@ -1,5 +1,6 @@
 import Cart from "../components/Cart";
 import CategoryNames from "../components/CategoryNames";
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
 function CartPage() {
@@ -10,6 +11,7 @@ function CartPage() {
         <CategoryNames />
       </div>
       <Cart />
+      <Footer />
     </>
   );
 }

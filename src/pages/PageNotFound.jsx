@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import CategoryNames from "../components/CategoryNames";
+import Footer from "../components/Footer";
 
 function PageNotFound() {
   return (
     <>
+      <Navbar />
+      <CategoryNames />
       <div
         style={{ display: "flex", justifyContent: "center", margin: "10rem" }}
       >
@@ -24,6 +29,7 @@ function PageNotFound() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

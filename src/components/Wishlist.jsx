@@ -30,7 +30,7 @@ function Wishlist() {
     <>
       {wishlist.length ? (
         <div className="mainCartDiv">
-          <div className="row cartProductDiv">
+          <div className=" card row cartProductDiv">
             <Scrollbars style={{ height: "28rem", width: "100%" }}>
               {wishlist.map((product) => (
                 <WishlistItems key={product.id} data={product} />
@@ -40,7 +40,9 @@ function Wishlist() {
 
           <div className="card cartSummaryDiv">
             <div className="summaryDiv">
-              <div className="text-center h4 orderSummary">Order Summary</div>
+              <div className="text-center h4 orderSummary">
+                Wishlist Summary
+              </div>
               <div className="row subtotal">
                 <p className="col-lg-7 h6">Subtotal</p>
                 <p className="col-lg-5">${subTotal.toFixed(2)}</p>
@@ -54,7 +56,7 @@ function Wishlist() {
                 <p className="col-lg-5">${taxEstimate.toFixed(2)}</p>
               </div>
               <div className="row orderTotal">
-                <p className="col-lg-7 h4">Order Total</p>
+                <p className="col-lg-7 h4">Wishlist Total</p>
                 <p className="col-lg-5 h5">${orderTotal.toFixed(2)}</p>
               </div>
             </div>
@@ -65,7 +67,7 @@ function Wishlist() {
           style={{
             display: "flex",
             justifyContent: "center",
-            marginTop: "50px",
+            margin: "5rem 0rem 5rem",
           }}
         >
           <div className="card text-center" style={{ padding: "2rem" }}>

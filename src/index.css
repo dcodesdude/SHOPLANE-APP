@@ -365,6 +365,7 @@ input {
   align-items: center;
   gap: 3rem;
   margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 .cartProductDiv {
   width: 50%;
@@ -402,3 +403,54 @@ input {
 }
 
 /* cart */
+
+/* --------------------------------------------------------------------------- */
+
+/* footer */
+
+.footerDiv {
+  background-color: rgb(41, 170, 255);
+  padding: 1rem 1rem 1rem;
+}
+
+.footerSocial {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.socialIconDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footerExtra {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subscriptionDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subscriptionInput {
+  padding: 0.35rem;
+}
+
+.footerEndNotes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footerNoteEncryption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+/* footer end */

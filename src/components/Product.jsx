@@ -42,17 +42,19 @@ function Product(props) {
     color: "#0d6efd",
   };
   function handleATCclick() {
-    if (atcBtn.current.innerText === "Add to Cart") {
-      dispatch(addToCart(props.data));
-      dispatch(changeATCbtnName(removeFromCartChanges));
-      atcBtn.current.innerText = cart.atcBtnName.name;
-      atcBtn.current.style.backgroundColor = cart.atcBtnName.color;
-    } else if (atcBtn.current.innerText === "Remove from Cart") {
-      dispatch(removeFromCart(props.data));
-      dispatch(changeATCbtnName(addToCartChanges));
-      atcBtn.current.innerText = cart.atcBtnName.name;
-      atcBtn.current.style.backgroundColor = cart.atcBtnName.color;
-    }
+    dispatch(addToCart(props.data));
+
+    // if (atcBtn.current.innerText === "Add to Cart") {
+    //   dispatch(addToCart(props.data));
+    //   dispatch(changeATCbtnName(removeFromCartChanges));
+    //   atcBtn.current.innerText = cart.atcBtnName.name;
+    //   atcBtn.current.style.backgroundColor = cart.atcBtnName.color;
+    // } else if (atcBtn.current.innerText === "Remove from Cart") {
+    //   dispatch(removeFromCart(props.data));
+    //   dispatch(changeATCbtnName(addToCartChanges));
+    //   atcBtn.current.innerText = cart.atcBtnName.name;
+    //   atcBtn.current.style.backgroundColor = cart.atcBtnName.color;
+    // }
 
     //------------------- simple logic -------------
     // if (atcBtn.current.innerText === "Add to Cart") {
