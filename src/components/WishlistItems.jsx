@@ -1,6 +1,13 @@
 import { MdDeleteForever } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { removeFromWishlist } from "../Redux/Slice/CartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  deleteFromCart,
+  removeFromWishlist,
+} from "../Redux/Slice/CartSlice";
+import { toast } from "react-toastify";
+import { useRef } from "react";
+import { BsFillCartFill } from "react-icons/bs";
 
 function WishlistItems(props) {
   const { id, title, price, description, category, image, rating } = props.data;
@@ -15,9 +22,30 @@ function WishlistItems(props) {
   const subPrice = priceArr.slice(priceArr.indexOf(".") + 1);
 
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  let isItemInCart = cart.cartItems.find((item) => item.id === id);
+  const atcBtn = useRef();
+
+  function handleATCclick() {
+    if (atcBtn.current.innerText === "Add to Cart") {
+      dispatch(addToCart(props.data));
+    } else {
+      dispatch(deleteFromCart(props.data));
+    }
+  }
 
   const handleRemoveItemFromWish = () => {
     dispatch(removeFromWishlist(props.data));
+    toast.warning(`${title} removed from wishlist`, {
+      position: "bottom-right",
+      autoClose: 600,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   return (
@@ -41,7 +69,24 @@ function WishlistItems(props) {
               <p className="subPrice">{subPrice}</p>
             </div>
           </div>
-          <div className="deleteBtnDivContainer">
+          <div className="wishPageBtnDivContainer">
+            <button
+              id="b"
+              onClick={handleATCclick}
+              ref={atcBtn}
+              className={
+                isItemInCart
+                  ? "btn redBtn addToCartBtnInAllProducts "
+                  : "btn blueBtn addToCartBtnInAllProducts"
+              }
+            >
+              {isItemInCart ? (
+                <MdDeleteForever size={"20px"} />
+              ) : (
+                <BsFillCartFill size={"20px"} />
+              )}
+              {isItemInCart ? "Remove from Cart" : "Add to Cart"}
+            </button>
             <div>
               <MdDeleteForever
                 onClick={handleRemoveItemFromWish}

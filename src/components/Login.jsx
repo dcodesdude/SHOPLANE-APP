@@ -2,6 +2,8 @@ import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import { loginSchema } from "../schemas/loginSchema";
 import { TbLogin } from "react-icons/tb";
+import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 function Login() {
   const initialValues = {
@@ -11,6 +13,38 @@ function Login() {
 
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   toast.info("Login with any credentials", {
+  //     position: "bottom-center",
+  //     autoClose: 4000,
+  //     hideProgressBar: false,
+  //     closeOnClick: false,
+  //     pauseOnHover: false,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "dark",
+  //   });
+  // }, []);
+
+  const loginSuccess = () => {
+    toast.success("Login Successful", {
+      position: "top-center",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  // useEffect(() => {
+  //   const NavigateToNext = setTimeout(() => {
+  //     navigate("/");
+  //   }, 5000);
+  // });
+
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
     useFormik({
       initialValues: initialValues,
@@ -19,6 +53,9 @@ function Login() {
         console.log("🚀 ~ file: Login.jsx:13 ~ Login ~ values:", values);
         alert("Login Successful");
         navigate("/");
+        // toast("hi");
+        // loginSuccess();
+
         action.resetForm();
       },
     });
@@ -61,7 +98,11 @@ function Login() {
                 ) : null}
               </div>
               <div>
-                <button type="submit" className="btn btn-primary loginPageBtn">
+                <button
+                  type="submit"
+                  // onClick={loginSuccess}
+                  className="btn blueBtn loginPageBtn"
+                >
                   <TbLogin size={"20px"} />
                   Login
                 </button>
@@ -73,6 +114,7 @@ function Login() {
           </form>
         </div>
       </div>
+      {/* <ToastContainer limit={1} /> */}
     </>
   );
 }

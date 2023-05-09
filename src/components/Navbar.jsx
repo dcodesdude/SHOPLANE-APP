@@ -10,13 +10,18 @@ import { useSelector } from "react-redux";
 function Navbar() {
   const cart = useSelector((state) => state.cart);
 
+  let totalCartQuantity = 0;
+  cart.cartItems.map(
+    (eachItem) => (totalCartQuantity += eachItem.itemQuantity)
+  );
+
   return (
-    <div className="navbarComp ">
+    <div className="navbarComp">
       <Link to={"/"} className="shopWord">
         SHOP<span className="laneWord">LANE</span>
       </Link>
       <div className="navbarRight">
-        <div className="dropdown ">
+        <div className="dropdown">
           <button
             className="btn btn-light dropdown-toggle dropDownBtn"
             href="#"
@@ -76,7 +81,7 @@ function Navbar() {
             </div>
             <div className={cart.cartItems.length > 0 ? "cartLengthDiv" : null}>
               <span className="cartLengthSpan">
-                {cart.cartItems.length > 0 ? cart.cartItems.length : null}
+                {cart.cartItems.length > 0 ? totalCartQuantity : null}
               </span>
             </div>
           </Link>

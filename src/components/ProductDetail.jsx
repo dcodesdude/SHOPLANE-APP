@@ -9,12 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
   addToWishlist,
-  changeATCbtnName,
-  removeFromCart,
+  deleteFromCart,
 } from "../Redux/Slice/CartSlice";
+import { MdDeleteForever } from "react-icons/md";
+// import { ToastContainer, toast } from "react-toastify";
 
 function ProductDetail(props) {
-  const cart = useSelector((state) => state.cart);
   const id = props.data;
   const [product, setProduct] = useState({});
   const [rating, setRating] = useState({});
@@ -46,32 +46,22 @@ function ProductDetail(props) {
 
   const heart = useRef();
   const atcBtn = useRef();
+
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const removeFromCartChanges = {
-    name: "Remove from Cart",
-    color: "red",
-  };
-  const addToCartChanges = {
-    name: "Add to Cart",
-    color: "#0d6efd",
-  };
+
+  let isItemInCart = cart.cartItems.find((item) => item.id === product.id);
+  let isItemInWish = cart.wishListItems.find((item) => item.id === product.id);
 
   function handleHeartClick() {
-    heart.current.classList.toggle("heartColor");
     dispatch(addToWishlist(product));
   }
 
   function handleATCclick() {
     if (atcBtn.current.innerText === "Add to Cart") {
       dispatch(addToCart(product));
-      dispatch(changeATCbtnName(removeFromCartChanges));
-      atcBtn.current.innerText = cart.atcBtnName.name;
-      atcBtn.current.style.backgroundColor = cart.atcBtnName.color;
-    } else if (atcBtn.current.innerText === "Remove from Cart") {
-      dispatch(removeFromCart(product));
-      dispatch(changeATCbtnName(addToCartChanges));
-      atcBtn.current.innerText = cart.atcBtnName.name;
-      atcBtn.current.style.backgroundColor = cart.atcBtnName.color;
+    } else {
+      dispatch(deleteFromCart(product));
     }
   }
 
@@ -104,35 +94,41 @@ function ProductDetail(props) {
               <div className="productDetailContent2Right">
                 <div>
                   <button
+                    id="b"
                     onClick={handleATCclick}
                     ref={atcBtn}
-                    className="btn btn-primary addToCartBtnInAllProducts"
+                    className={
+                      isItemInCart
+                        ? "btn redBtn addToCartBtnInAllProducts"
+                        : "btn blueBtn addToCartBtnInAllProducts"
+                    }
                   >
-                    {/* <BsFillCartFill size={"20px"} /> */}
-                    Add to Cart
+                    {isItemInCart ? (
+                      <MdDeleteForever size={"20px"} />
+                    ) : (
+                      <BsFillCartFill size={"20px"} />
+                    )}
+                    {isItemInCart ? "Remove from Cart" : "Add to Cart"}
                   </button>
                 </div>
-                <div id="a" onClick={handleHeartClick} ref={heart}>
-                  <FaHeart className="detailedProductHeart" size={"1.8rem"} />
+                <div ref={heart} onClick={handleHeartClick}>
+                  <FaHeart
+                    size={"1.5rem"}
+                    className={isItemInWish ? "productHeart" : null}
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
       ) : (
-        <div
-          style={{
-            width: "200px",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            right: "50%",
-          }}
-        >
-          <RingLoader color="rgb(41, 170, 255)" />
-          <p style={{ marginLeft: "-3rem", position: "fixed" }}>
-            Loading, Please wait...
-          </p>
+        <div className="loadingPage">
+          <div>
+            <RingLoader color="rgb(41, 170, 255)" />
+          </div>
+          <div className="loadingPageText">
+            <p>Loading, Please wait...</p>
+          </div>
         </div>
       )}
     </>

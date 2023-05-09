@@ -8,7 +8,7 @@ function Cart() {
 
   let subTotal = 0;
   for (let each of cart) {
-    subTotal += each.price;
+    subTotal += each.price * each.itemQuantity;
   }
 
   let shippingEstimate = subTotal * 0.05;
@@ -61,7 +61,7 @@ function Cart() {
             <div className="card text-center" style={{ padding: "2rem" }}>
               <p>Your Cart is Empty!</p>
               <Link to={"/"}>
-                <button className="btn btn-primary">Continue Shopping</button>
+                <button className="btn blueBtn">Continue Shopping</button>
               </Link>
             </div>
           </div>

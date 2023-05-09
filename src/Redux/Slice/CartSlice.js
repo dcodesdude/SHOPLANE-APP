@@ -1,12 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const initialState = {
   cartItems: [],
   wishListItems: [],
-  atcBtnName: {
-    name: "Add to Cart",
-    color: "#0d6efd",
-  },
+  heartActive: false,
 };
 
 const cartSlice = createSlice({
@@ -14,29 +12,101 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state, action) {
-      state.cartItems.push(action.payload);
+      const itemIndex = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (itemIndex === -1) {
+        const tempItem = { ...action.payload, itemQuantity: 1 };
+        state.cartItems.push(tempItem);
+        toast.success(`${action.payload.title} added to the cart`, {
+          position: "bottom-right",
+          autoClose: 600,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        state.cartItems[itemIndex].itemQuantity += 1;
+      }
     },
 
     removeFromCart(state, action) {
-      state.cartItems.map(() => {
-        const filteredCartItems = state.cartItems.filter(
-          (item) => item.id !== action.payload.id
-        );
-        state.cartItems = filteredCartItems;
+      const itemIndex = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (itemIndex >= 0) {
+        if (state.cartItems[itemIndex].itemQuantity > 1) {
+          state.cartItems[itemIndex].itemQuantity -= 1;
+        } else {
+          state.cartItems.map(() => {
+            const filteredCartItems = state.cartItems.filter(
+              (item) => item.id !== action.payload.id
+            );
+            state.cartItems = filteredCartItems;
+          });
+        }
+      }
+    },
+    deleteFromCart(state, action) {
+      const filteredCartItems = state.cartItems.filter(
+        (item) => item.id !== action.payload.id
+      );
+      state.cartItems = filteredCartItems;
+      toast.error(`${action.payload.title} removed from the cart`, {
+        position: "bottom-right",
+        autoClose: 600,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
       });
     },
     addToWishlist(state, action) {
-      state.wishListItems.push(action.payload);
+      let itemIndex = state.wishListItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (itemIndex >= 0) {
+        const filteredWishItems = state.wishListItems.filter(
+          (item) => item.id !== action.payload.id
+        );
+        state.wishListItems = filteredWishItems;
+        toast.warning(`${action.payload.title} removed from wishlist`, {
+          position: "bottom-right",
+          autoClose: 600,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      } else {
+        const tempItem = { ...action.payload, heart: true };
+        state.wishListItems.push(tempItem);
+        toast.info(`${action.payload.title} added to wishlist`, {
+          position: "bottom-right",
+          autoClose: 600,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
     },
     removeFromWishlist(state, action) {
-      const filteredWishItems = state.wishListItems.filter(
-        (item) => item.id !== action.payload.id
-      );
-      state.wishListItems = filteredWishItems;
-    },
-    changeATCbtnName(state, action) {
-      state.atcBtnName.name = action.payload.name;
-      state.atcBtnName.color = action.payload.color;
+      state.wishListItems.map(() => {
+        const filteredWishItems = state.wishListItems.filter(
+          (item) => item.id !== action.payload.id
+        );
+        state.wishListItems = filteredWishItems;
+      });
     },
   },
 });
@@ -44,8 +114,8 @@ const cartSlice = createSlice({
 export const {
   addToCart,
   removeFromCart,
+  deleteFromCart,
   addToWishlist,
   removeFromWishlist,
-  changeATCbtnName,
 } = cartSlice.actions;
 export default cartSlice.reducer;

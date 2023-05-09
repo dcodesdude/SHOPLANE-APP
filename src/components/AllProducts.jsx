@@ -30,19 +30,13 @@ function AllProducts() {
             ))}
           </div>
         ) : (
-          <div
-            style={{
-              width: "200px",
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              right: "50%",
-            }}
-          >
-            <RingLoader color="rgb(41, 170, 255)" />
-            <p style={{ marginLeft: "-3rem", position: "fixed" }}>
-              Loading, Please wait...
-            </p>
+          <div className="loadingPage">
+            <div>
+              <RingLoader color="rgb(41, 170, 255)" />
+            </div>
+            <div className="loadingPageText">
+              <p>Loading, Please wait...</p>
+            </div>
           </div>
         )}
       </div>

@@ -7,12 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
   addToWishlist,
-  changeATCbtnName,
-  removeFromCart,
+  deleteFromCart,
 } from "../Redux/Slice/CartSlice";
+import { toast } from "react-toastify";
+import { MdDeleteForever } from "react-icons/md";
 
-function Product(props) {
-  const { id, title, price, description, category, image, rating } = props.data;
+function Product({ data }) {
+  const { id, title, price, description, category, image, rating } = data;
 
   let productPrice = price;
 
@@ -26,72 +27,22 @@ function Product(props) {
   const heart = useRef();
   const atcBtn = useRef();
 
-  function handleHeartClick() {
-    heart.current.classList.toggle("heartColor");
-    dispatch(addToWishlist(props.data));
-  }
-
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const removeFromCartChanges = {
-    name: "Remove from Cart",
-    color: "red",
-  };
-  const addToCartChanges = {
-    name: "Add to Cart",
-    color: "#0d6efd",
-  };
+
+  let isItemInCart = cart.cartItems.find((item) => item.id === id);
+  let isItemInWish = cart.wishListItems.find((item) => item.id === id);
+
+  function handleHeartClick() {
+    dispatch(addToWishlist(data));
+  }
+
   function handleATCclick() {
-    dispatch(addToCart(props.data));
-
-    // if (atcBtn.current.innerText === "Add to Cart") {
-    //   dispatch(addToCart(props.data));
-    //   dispatch(changeATCbtnName(removeFromCartChanges));
-    //   atcBtn.current.innerText = cart.atcBtnName.name;
-    //   atcBtn.current.style.backgroundColor = cart.atcBtnName.color;
-    // } else if (atcBtn.current.innerText === "Remove from Cart") {
-    //   dispatch(removeFromCart(props.data));
-    //   dispatch(changeATCbtnName(addToCartChanges));
-    //   atcBtn.current.innerText = cart.atcBtnName.name;
-    //   atcBtn.current.style.backgroundColor = cart.atcBtnName.color;
-    // }
-
-    //------------------- simple logic -------------
-    // if (atcBtn.current.innerText === "Add to Cart") {
-    //   dispatch(addToCart(props.data));
-    //   dispatch(changeATCbtnName(removeFromCartChanges));
-    //   atcBtn.current.innerText = cart.atcBtnName.name;
-    //   atcBtn.current.style.backgroundColor = cart.atcBtnName.color;
-    // } else if (atcBtn.current.innerText === "Remove from Cart") {
-    //   dispatch(removeFromCart(props.data));
-    //   dispatch(changeATCbtnName(addToCartChanges));
-    //   atcBtn.current.innerText = cart.atcBtnName.name;
-    //   atcBtn.current.style.backgroundColor = cart.atcBtnName.color;
-    // }
-    //------------------- simple logic end -------------
-
-    //----------------------complex logic------------------
-    // // if (atcBtn.current.innerText === "Add to Cart") {
-    // if (cart.atcBtnName.name === "Add to Cart") {
-    //   for (let each of cart.cartItems) {
-    //     if (each.id === props.data.id) {
-    //       alert("item already added to the cart");
-    //     } else {
-    //       dispatch(addToCart(props.data));
-    //     }
-    //   }
-    //   dispatch(addToCart(props.data));
-    //   dispatch(changeATCbtnName(removeFromCartChanges));
-    //   atcBtn.current.innerText = cart.atcBtnName.name;
-    //   atcBtn.current.style.backgroundColor = cart.atcBtnName.color;
-    //   // } else if (atcBtn.current.innerText === "Remove from Cart") {
-    // } else if (cart.atcBtnName.name === "Remove from Cart") {
-    //   dispatch(removeFromCart(props.data));
-    //   dispatch(changeATCbtnName(addToCartChanges));
-    //   atcBtn.current.innerText = cart.atcBtnName.name;
-    //   atcBtn.current.style.backgroundColor = cart.atcBtnName.color;
-    // }
-    //----------------------complex logic end------------------
+    if (atcBtn.current.innerText === "Add to Cart") {
+      dispatch(addToCart(data));
+    } else {
+      dispatch(deleteFromCart(data));
+    }
   }
 
   return (
@@ -101,11 +52,13 @@ function Product(props) {
           <div className="productHeartDivContainer">
             <div
               className="productHeartDiv"
-              id="a"
-              onClick={handleHeartClick}
               ref={heart}
+              onClick={handleHeartClick}
             >
-              <FaHeart className="productHeart" />
+              <FaHeart
+                size={"1.3rem"}
+                className={isItemInWish ? "productHeart" : null}
+              />
             </div>
           </div>
           <div className="imageContainingDiv">
@@ -132,10 +85,18 @@ function Product(props) {
               id="b"
               onClick={handleATCclick}
               ref={atcBtn}
-              className="btn btn-primary addToCartBtnInAllProducts"
+              className={
+                isItemInCart
+                  ? "btn redBtn addToCartBtnInAllProducts "
+                  : "btn blueBtn addToCartBtnInAllProducts"
+              }
             >
-              {/* <BsFillCartFill size={"20px"} /> */}
-              Add to Cart
+              {isItemInCart ? (
+                <MdDeleteForever size={"20px"} />
+              ) : (
+                <BsFillCartFill size={"20px"} />
+              )}
+              {isItemInCart ? "Remove from Cart" : "Add to Cart"}
             </button>
           </div>
         </div>
