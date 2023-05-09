@@ -34,7 +34,6 @@ function SignUp() {
             <div className="formDiv">
               <h2>Sign Up</h2>
               <div className="form-input">
-                {/* <label htmlFor="firstname">First Name</label> */}
                 <input
                   type="text"
                   name="firstname"
@@ -49,7 +48,6 @@ function SignUp() {
                 ) : null}
               </div>
               <div className="form-input">
-                {/* <label htmlFor="lastname">Last Name</label> */}
                 <input
                   type="text"
                   name="lastname"
@@ -64,7 +62,6 @@ function SignUp() {
                 ) : null}
               </div>
               <div className="form-input">
-                {/* <label htmlFor="email">Email</label> */}
                 <input
                   type="email"
                   name="email"
@@ -79,7 +76,6 @@ function SignUp() {
                 ) : null}
               </div>
               <div className="form-input">
-                {/* <label htmlFor="password">Password</label> */}
                 <input
                   type="password"
                   name="password"
@@ -94,7 +90,6 @@ function SignUp() {
                 ) : null}
               </div>
               <div className="form-input">
-                {/* <label htmlFor="confirm_password"> Confirm Password</label> */}
                 <input
                   type="password"
                   name="confirm_password"
@@ -109,7 +104,7 @@ function SignUp() {
                 ) : null}
               </div>
               <div>
-                <button type="submit" className="btn btn-primary signupPageBtn">
+                <button type="submit" className="btn blueBtn signupPageBtn">
                   <FaRegAddressCard size={"18px"} />
                   Sign Up
                 </button>

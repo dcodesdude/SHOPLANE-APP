@@ -8,12 +8,10 @@ function ProductDetailPage() {
   const { id } = useParams();
   return (
     <>
-      <div style={{ backgroundColor: "white" }} className="sticky-top">
-        <Navbar />
-        <CategoryNames />
-      </div>
+      <Navbar />
+      <CategoryNames />
       <ProductDetail data={id} />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

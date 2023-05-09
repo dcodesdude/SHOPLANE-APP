@@ -6,10 +6,8 @@ import Navbar from "../components/Navbar";
 function CartPage() {
   return (
     <>
-      <div style={{ backgroundColor: "white" }} className="sticky-top">
-        <Navbar />
-        <CategoryNames />
-      </div>
+      <Navbar />
+      <CategoryNames />
       <Cart />
       <Footer />
     </>

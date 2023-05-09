@@ -21,7 +21,7 @@ function PageNotFound() {
         >
           <div className="text-center h1">PageNotFound</div>
           <div className="text-center h3">
-            <button className="btn btn-primary">
+            <button className="btn blueBtn">
               <Link style={{ color: "white" }} to={"/"}>
                 Go Home
               </Link>

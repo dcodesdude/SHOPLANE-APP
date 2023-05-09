@@ -1,14 +1,3 @@
-// function Wishlist() {
-//   const wishlist = useSelector((state) => state.cart.wishListItems);
-
-//   return (
-//     <>
-//       <div>Wishlist</div>
-//     </>
-//   );
-// }
-// export default Wishlist;
-
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars";
@@ -73,7 +62,7 @@ function Wishlist() {
           <div className="card text-center" style={{ padding: "2rem" }}>
             <p>Your WishList is Empty!</p>
             <Link to={"/"}>
-              <button className="btn btn-primary">Continue Shopping</button>
+              <button className="btn blueBtn">Continue Shopping</button>
             </Link>
           </div>
         </div>

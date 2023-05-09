@@ -9,12 +9,10 @@ function CategoryPage() {
 
   return (
     <>
-      <div style={{ backgroundColor: "white" }} className="sticky-top">
-        <Navbar />
-        <CategoryNames />
-      </div>
+      <Navbar />
+      <CategoryNames />
       <EachCategory data={catName} />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

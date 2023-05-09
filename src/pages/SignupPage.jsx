@@ -6,10 +6,8 @@ import SignUp from "../components/SignUp";
 function SignupPage() {
   return (
     <>
-      <div style={{ backgroundColor: "white" }} className="sticky-top">
-        <Navbar />
-        <CategoryNames />
-      </div>
+      <Navbar />
+      <CategoryNames />
       <SignUp />
       <Footer />
     </>
