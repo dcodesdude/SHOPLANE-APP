@@ -50,7 +50,6 @@ function WishlistItems(props) {
 
   return (
     <>
-      {/* <div className="col-sm-9 card"> */}
       <div className="card cartDiv">
         <div className="imageDiv">
           <img src={image} alt={title} />
@@ -92,7 +91,7 @@ function WishlistItems(props) {
                 onClick={handleRemoveItemFromWish}
                 style={{ cursor: "pointer" }}
                 size={"1.8rem"}
-                color="#cc0f00"
+                color="#ff0000"
               />
             </div>
           </div>

@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import CartItems from "./CartItems";
 import { Link } from "react-router-dom";
-import { Scrollbars } from "react-custom-scrollbars";
 
 function Cart() {
   const cart = useSelector((state) => state.cart.cartItems);
@@ -19,12 +18,12 @@ function Cart() {
     <>
       {cart.length ? (
         <div className="mainCartDiv">
-          <div className=" card row cartProductDiv">
-            <Scrollbars style={{ height: "28rem", width: "100%" }}>
+          <div className="card row cartProductDiv">
+            <div className={cart.length == 1 ? "cartNoScroll" : "cartScroll"}>
               {cart.map((product) => (
                 <CartItems key={product.id} data={product} />
               ))}
-            </Scrollbars>
+            </div>
           </div>
 
           <div className="card cartSummaryDiv">
