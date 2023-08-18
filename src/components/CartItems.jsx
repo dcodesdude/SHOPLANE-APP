@@ -54,8 +54,7 @@ function CartItems(props) {
 
   return (
     <>
-      {/* <div className="col-sm-9 card"> */}
-      <div className="card cartDiv">
+      <div className="cartDiv">
         <div className="imageDiv">
           <img src={image} alt={title} />
         </div>
@@ -68,7 +67,7 @@ function CartItems(props) {
           </div>
 
           <div className="quantityChangeDiv">
-            <div className="card quantityChangeInsideDiv">
+            <div className="quantityChangeInsideDiv">
               <button onClick={handleMinusCLick} className="minusIcon">
                 <HiMinusCircle />
               </button>
@@ -84,9 +83,12 @@ function CartItems(props) {
               <p className="mainPrice">{mainPrice}</p>
               <p className="subPrice">{subPrice}</p>
             </div>
-            <div className="quantityToMultiply">
+
+            {/* If you want to display the value of a product corresponding to its quantity, you can uncomment the below code */}
+
+            {/* <div className="quantityToMultiply">
               x{quantity} {""}= ${(productPrice * quantity).toFixed(2)}
-            </div>
+            </div> */}
           </div>
 
           <div className="deleteBtnDivContainer">
@@ -95,7 +97,7 @@ function CartItems(props) {
                 onClick={handleDeleteItemFromCart}
                 style={{ cursor: "pointer" }}
                 size={"1.8rem"}
-                color="#cc0f00"
+                color="#ff0000"
               />
             </div>
           </div>

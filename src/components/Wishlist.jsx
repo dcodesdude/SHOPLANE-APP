@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Scrollbars } from "react-custom-scrollbars";
 import WishlistItems from "./WishlistItems";
 
 function Wishlist() {
@@ -19,12 +18,12 @@ function Wishlist() {
     <>
       {wishlist.length ? (
         <div className="mainCartDiv">
-          <div className=" card row cartProductDiv">
-            <Scrollbars style={{ height: "28rem", width: "100%" }}>
+          <div className="card row cartProductDiv">
+            <div className="cartScroll">
               {wishlist.map((product) => (
                 <WishlistItems key={product.id} data={product} />
               ))}
-            </Scrollbars>
+            </div>
           </div>
 
           <div className="card cartSummaryDiv">

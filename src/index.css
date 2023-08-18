@@ -21,7 +21,6 @@ body {
   background-color: white;
   z-index: 10;
   box-shadow: 0px 7px 10px -12px rgba(0, 0, 0, 0.45);
-  /* border-bottom: solid rgba(72, 72, 72, 0.086); */
 }
 
 .shopWord {
@@ -143,8 +142,6 @@ body {
   padding: 10px;
   border-radius: 2px;
   box-shadow: 0px 7px 10px -12px rgba(0, 0, 0, 0.45);
-  /* box-shadow: 0px -7px 10px -12px rgba(0, 0, 0, 0.45),
-    0px 7px 10px -12px rgba(0, 0, 0, 0.45); */
   gap: 4rem;
   font-size: 15px;
 }
@@ -404,17 +401,27 @@ input {
 .mainCartDiv {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   gap: 3rem;
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
 .cartProductDiv {
   width: 50%;
+  max-height: 90vh;
+}
+.cartScroll {
+  overflow: scroll;
+  /* width: "100%"; */
+}
+.cartNoScroll {
+  /* ------No_overflow------- */
 }
 .cartDiv {
   display: flex;
   flex-direction: row;
+  box-shadow: 0px 0px 1px 1px rgba(82, 82, 82, 0.241);
+  padding: 30px 0px;
 }
 
 .imageDiv {
@@ -431,6 +438,7 @@ input {
 
 .contentDiv {
   width: 60%;
+  padding-right: 20px;
 }
 
 .quantityChangeDiv {
@@ -441,6 +449,9 @@ input {
   display: flex;
   flex-direction: row;
   align-items: center;
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.173);
+  padding: 2px 10px;
+  gap: 10px;
 }
 
 .minusIcon,
@@ -449,6 +460,14 @@ input {
   background-color: white;
   border-style: none;
   font-size: 1.5rem;
+}
+
+.plusIcon {
+  color: rgb(41, 170, 255);
+}
+
+.minusIcon {
+  color: #ff0000;
 }
 
 .productPriceDivInCart {
@@ -545,36 +564,48 @@ input {
     align-items: center;
     margin: 0px;
     padding: 0px 0px 1vh;
+    position: static;
   }
   .categoryNames {
-    /* height: 10vh; */
     flex-direction: column;
-    /* overflow: scroll; */
-    /* background-color: rgba(128, 128, 128, 0.257); */
-    /* margin-top: 2vh; */
     gap: 2vh;
   }
 
   .shopWord {
     font-size: 4rem;
   }
+  .shopWord:hover {
+    color: rgb(41, 170, 255);
+    text-decoration: none;
+  }
 
   .mainCartDiv {
     flex-direction: column;
+    align-items: center;
   }
 
   .cartProductDiv {
-    width: 100%;
+    width: 70%;
   }
 
   .cartDiv {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2vh 0vh;
+    padding: 3vh 0vh;
   }
-  .cartSummaryDiv {
+
+  .imageDiv {
     width: 100%;
+  }
+  .contentDiv {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cartSummaryDiv {
+    width: 70%;
     justify-content: center;
     align-items: center;
   }
